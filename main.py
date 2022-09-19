@@ -22,10 +22,10 @@ for line in lines:
     if len(title) > 30:
         long_name_counter += 1
     # Поиск с фильтром по году получения (проверяет и псевдоним, и ФИО автора)
-    receipt_year = int(receipt_date.replace('.', ' ').split()[2])
-    if (search_term in author.lower() or search_term in author_full_name.lower()) and 2016 <= receipt_year <= 2018: # Вариант 7 - От 2016 до 2018 года
+    if (search_term in author.lower() or search_term in author_full_name.lower()): # Вариант 5 - Без ограничений
         search_results.append(f'{author} - {title} ID{id}')
     # Генератор библиографических ссылок
+    receipt_year = receipt_date.replace('.', ' ').split()[2]
     if bibliographic_links_count >= 0:
         bibliographic_links_count -= 1
         bibliographic_link = f'{author}. {title} - {receipt_year}'
@@ -46,6 +46,7 @@ with open('links.txt', 'w', encoding='utf-8') as f:
 print(f'Tags:{" #".join(tags)}') # Допзадание с длинным выводом
 print(f'Number of records: {len(lines)}')
 print(f'Records with name longer than 30 symbols: {long_name_counter}')
+print('Bibliographic links generated and stored in links.txt')
 print('Search results: ')
 for i in search_results:
     print(f'    {i}')
