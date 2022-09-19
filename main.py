@@ -40,8 +40,8 @@ most_issued.sort(key=lambda x:x[0], reverse=True)
 
 # Запись библиографических ссылок в файл
 with open('links.txt', 'w', encoding='utf-8') as f:
-    for link in bibliographic_links:
-        f.write(f'{link}\n')
+    for i in range(len(bibliographic_links)):
+        f.write(f'{i + 1}. {bibliographic_links[i]}\n')
 
 print(f'Tags:{" #".join(tags)}') # Допзадание с длинным выводом
 print(f'Number of records: {len(lines)}')
